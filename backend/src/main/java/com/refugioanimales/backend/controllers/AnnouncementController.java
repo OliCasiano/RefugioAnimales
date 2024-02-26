@@ -1,4 +1,4 @@
-package com.hackathon.grupo22.backend.controllers;
+package com.refugioanimales.backend.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.hackathon.grupo22.backend.persistence.Announcement;
-import com.hackathon.grupo22.backend.persistence.AnnouncementRepository;
+import com.refugioanimales.persistence.Announcement;
+import com.refugioanimales.persistence.AnnouncementRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,10 +28,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @CrossOrigin(origins = "http://localhost:5173")
 public class AnnouncementController {
 
-    private AnnouncementRepository repository;
+    private Announcement repository;
 
     public AnnouncementController(@Autowired AnnouncementRepository repository) {
-        this.repository = repository;
+        this.repository = (Announcement) repository;
     }
 
     @GetMapping("/announcement")
@@ -43,11 +43,8 @@ public class AnnouncementController {
                 announcement.getId(),
                 announcement.getTitle(),
                 announcement.getDescription(),
-                announcement.getContact(),
-                announcement.getPrice(),
-                announcement.getImageUrl(),
-                announcement.getCategory(),
-                announcement.getLocation()));
+                announcement.getLocalization(),
+                announcement.getImageUrl()));
         }
         return announcementResponse;
     }
@@ -61,11 +58,8 @@ public class AnnouncementController {
                 announcement.getId(),
                 announcement.getTitle(),
                 announcement.getDescription(),
-                announcement.getContact(),
-                announcement.getPrice(),
-                announcement.getImageUrl(),
-                announcement.getCategory(),
-                announcement.getLocation());
+                announcement.getLocalization(),
+                announcement.getImageUrl());
             return ResponseEntity.ok().body(response);
         } else {
             return ResponseEntity.notFound().build();
@@ -78,11 +72,8 @@ public class AnnouncementController {
                 request.getId(),
                 request.getTitle(),
                 request.getDescription(),
-                request.getContact(),
-                request.getPrice(),
-                request.getImageUrl(),
-                request.getCategory(),
-                request.getLocation());
+                request.getLocalization(),
+                request.getImageUrl());
 
         Announcement savedAnnouncement = repository.save(announcement);
 
@@ -90,11 +81,8 @@ public class AnnouncementController {
                 savedAnnouncement.getId(),
                 savedAnnouncement.getTitle(),
                 savedAnnouncement.getDescription(),
-                savedAnnouncement.getContact(),
-                savedAnnouncement.getPrice(),
-                savedAnnouncement.getImageUrl(),
-                savedAnnouncement.getCategory(),
-                savedAnnouncement.getLocation());
+                savedAnnouncement.getLocalization(),
+                savedAnnouncement.getImageUrl());
 
     }
 
@@ -118,11 +106,9 @@ public class AnnouncementController {
                 Announcement existingAnnouncement = optionalAnnouncement.get();
                 existingAnnouncement.setTitle(updateAnnouncement.getTitle());
                 existingAnnouncement.setDescription(updateAnnouncement.getDescription());
-                existingAnnouncement.setContact(updateAnnouncement.getContact());
-                existingAnnouncement.setPrice(updateAnnouncement.getPrice());
+                existingAnnouncement.setLocalization(updateAnnouncement.getLocalization());
                 existingAnnouncement.setImageUrl(updateAnnouncement.getImageUrl());
-                existingAnnouncement.setCategory(updateAnnouncement.getCategory());
-                existingAnnouncement.setLocation(updateAnnouncement.getLocation());
+
 
         Announcement updatedAnnouncement = repository.save(existingAnnouncement);
 
@@ -130,11 +116,8 @@ public class AnnouncementController {
                 updatedAnnouncement.getId(),
                 updatedAnnouncement.getTitle(),
                 updatedAnnouncement.getDescription(),
-                updatedAnnouncement.getContact(),
-                updatedAnnouncement.getPrice(),
-                updatedAnnouncement.getImageUrl(),
-                updatedAnnouncement.getCategory(),
-                updatedAnnouncement.getLocation());
+                updatedAnnouncement.getLocalization(),
+                updatedAnnouncement.getImageUrl());
 
         return ResponseEntity.ok().body(announcementResponse);
     } else {

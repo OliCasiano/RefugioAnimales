@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import com.refugioanimales.persistence.AnnouncementRepository;
 
 import com.refugioanimales.persistence.Announcement;
 import com.refugioanimales.persistence.AnnouncementRepository;

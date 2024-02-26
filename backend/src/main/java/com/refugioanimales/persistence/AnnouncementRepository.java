@@ -1,4 +1,5 @@
 package com.refugioanimales.persistence;
+import com.refugioanimales.persistence.AnnouncementRepository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

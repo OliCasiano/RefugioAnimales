@@ -1,6 +1,7 @@
 
 import { Header } from '../components/header/Header'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Card } from '../components/Card/Card';
 
 export const HomePage = () => {
   const [cards, setCards] = useEstate("")
@@ -24,6 +25,10 @@ export const HomePage = () => {
     
 
   return (
-    <div><Header /></div>
+    <div>
+      <Header />
+      <Card />
+      </div>
+    
   )
 }

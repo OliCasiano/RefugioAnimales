@@ -1,4 +1,11 @@
 header {
     display: flex;
     justify-content: center;
+    background-color: #FFAD40;
+    width:100vw;
+    padding: 1rem;
+}
+
+header img {
+    width: 10%;
 }

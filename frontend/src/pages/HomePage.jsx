@@ -1,7 +1,28 @@
 
 import { Header } from '../components/header/Header'
+import { useEffect } from 'react';
 
 export const HomePage = () => {
+  const [cards, setCards] = useEstate("")
+  
+  const URL = "http://localhost:8080/announcement";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setCards(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  })()
+    
+
   return (
     <div><Header /></div>
   )
